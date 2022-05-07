@@ -17,3 +17,6 @@ jobs:
           uname -a
           echo "Leandro Nunes"
           date
+          echo "teste criacao de arquivo" > arquivoteste.txt
+          cat arquivoteste.txt
+          ls
