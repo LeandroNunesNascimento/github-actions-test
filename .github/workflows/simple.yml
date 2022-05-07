@@ -16,3 +16,4 @@ jobs:
           pwd
           uname -a
           echo "Leandro Nunes"
+          date
