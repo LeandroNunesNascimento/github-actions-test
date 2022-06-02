@@ -19,3 +19,4 @@ jobs:
           date
           echo "teste criacao de arquivo" > arquivoteste.txt
           cat arquivoteste.txt
+          date
