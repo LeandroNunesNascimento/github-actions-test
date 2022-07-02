@@ -1,8 +1,7 @@
 name: 06-Tests
 
-on:
+on: [push]
   # We also want to be able to run this manually from Github
-  workflow_dispatch:
 
 jobs:
   build:
