@@ -6,7 +6,7 @@ on: [push]
 
 jobs:
   run-github-actions:
-    runs-on: MacBook-Air-de-Leandro
+    runs-on: self-hosted
     steps:
       - name: Simple JS Action
         id: greet
