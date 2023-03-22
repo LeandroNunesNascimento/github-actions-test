@@ -10,8 +10,8 @@ jobs:
         run: echo "Hello world"
       - name: multiline script
         run: |
-          node -v
-          npm -v
+         # node -v
+         # npm -v
           ps -ef
           pwd
           uname -a
