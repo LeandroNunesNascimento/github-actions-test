@@ -15,7 +15,7 @@ jobs:
     - id: step1
       run: echo "test=Hello" >> $GITHUB_OUTPUT
     - id: step2
-      run: echo "::set-output name=test::world"
+      run: echo "test=World" >> $GITHUB_OUTPUT
 
   job2:
     runs-on: ubuntu-latest
