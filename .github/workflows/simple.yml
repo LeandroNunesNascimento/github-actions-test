@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   run-shell-command:
-    runs-on: labe-1
+    runs-on: self-hosted
     steps:
       - name: echo a string
         run: echo "Hello world"
