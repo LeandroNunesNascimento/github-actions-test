@@ -1,7 +1,6 @@
 import os
 import json
 import sys
-import boto3
 inputvariable = os.environ['INPUT_STORE']
 print(inputvariable)
 print('Hello World!')
