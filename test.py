@@ -7,16 +7,16 @@ print('Hello World!')
 
 # Nested JSON data
 nested_data = {
-    'name': 'John',
-    'age': 30,
+    'name': $argv[1],
+    'age': $argv[2],
     'children': [
         {
-            'name': 'Alice',
-            'age': 5
+            'name': argv[3],
+            'age': argv[4]
         },
         {
-            'name': 'Bob',
-            'age': 7
+            'name': argv[5],
+            'age': argv[6]
         }
     ]
 }
