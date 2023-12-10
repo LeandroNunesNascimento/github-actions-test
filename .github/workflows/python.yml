@@ -20,5 +20,13 @@ jobs:
         run: |
           ls -ltra
           echo ${{ github.repository }}
+          echo ${{ github.GITHUB_EVENT_NAME }}
+          echo ${{ github.GITHUB_JOB }}
+          echo ${{ github.GITHUB_REF_TYPE }}
+          echo ${{ github.GITHUB_REPOSITORY_OWNER }}
+          echo ${{ github.GITHUB_RUN_ID }}
+          echo ${{ github.GITHUB_SHA }}
+          echo ${{ github.GITHUB_WORKFLOW }}
+          
           echo "Store: ${{ github.event.inputs.myInput }}"
           INPUT_STORE=${{ github.event.inputs.myInput }} python3 ${{ github.action_path }}\test.py
