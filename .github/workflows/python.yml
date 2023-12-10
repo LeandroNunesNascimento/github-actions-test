@@ -31,3 +31,4 @@ jobs:
           echo "Store: ${{ github.event.inputs.myInput }}"
           INPUT_STORE=${{ github.event.inputs.myInput }} python3 ${{ github.action_path }}\test.py
           ls -ltra
+          cat nested_data
