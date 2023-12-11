@@ -19,7 +19,7 @@ jobs:
       - name: Execute Test Script
         run: |
           ls -ltra
-          TESTE1 = echo ${{ github.repository }}
+          echo ${{ github.repository }}
           echo ${{ github.event_name }}
           echo ${{ github.job }}
           echo ${{ github.ref_type }}
