@@ -7,19 +7,19 @@ print('Hello World!')
 
 # Nested JSON data
 nested_data = {
-    'name': $argv[1],
-    'age': $argv[2],
+    'name': "INPUT_STORE",
+    'age': 30,
     'children': [
         {
-            'name': argv[3],
-            'age': argv[4]
+            'name': 'Alice',
+            'age': 5
         },
         {
-            'name': argv[5],
-            'age': argv[6]
+            'name': 'Bob',
+            'age': 7
         }
     ]
-}
+
 
 # Write nested JSON data to a file
 with open('nested_data.json', 'w') as f:
