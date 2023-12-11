@@ -7,7 +7,7 @@ print('Hello World!')
 
 # Nested JSON data
 nested_data = {
-    'name': "INPUT_STORE",
+    'name': 'luis',
     'age': 30,
     'children': [
         {
@@ -19,6 +19,7 @@ nested_data = {
             'age': 7
         }
     ]
+}
 
 
 # Write nested JSON data to a file
