@@ -7,13 +7,13 @@ print('Hello World!')
 
 # Nested JSON data
 nested_data = {
-    'name': "INPUT_STORE",
+    'name': 'luis',
     'age': 30,
     'children': [
         {
             'name': 'Alice',
             'age': 5
-        },
+        }
         {
             'name': 'Bob',
             'age': 7
