@@ -29,6 +29,6 @@ jobs:
           echo ${{ github.WORKFLOW }}
           
           echo "Store: ${{ github.event.inputs.myInput }}"
-          INPUT_STORE=${{ github.event.inputs.myInput }} python3 ${{ github.action_path }}\test.py
+          INPUT_STORE=${{ github.event.inputs.myInput }} python3 ${{ github.action_path }}\test.py ${{ github.repository }}
           ls -ltra
           cat nested_data.json
