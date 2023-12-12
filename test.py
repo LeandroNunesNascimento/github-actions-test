@@ -9,15 +9,15 @@ print('Hello World!')
 # Nested JSON data
 nested_data = {
     'name': sys.argv[1],
-    'age': 30,
+    'age': sys.argv[2],
     'children': [
         {
-            'name': 'Alice',
-            'age': 5
+            'name': sys.argv[3],
+            'age': sys.argv[4]
         },
         {
-            'name': 'Bob',
-            'age': 7
+            'name': sys.argv[5],
+            'age': sys.argv[6]
         }
     ]
 }
