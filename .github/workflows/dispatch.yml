@@ -1,0 +1,15 @@
+on:
+  workflow_dispatch:
+    inputs:
+      my_value:
+        description: 'My input value'
+        required: true
+        default: 'foo'
+        type: string
+
+jobs:
+  my_job:
+    name: "My job [my_value: ${{ github.event.inputs.my_value }}]"
+    runs-on: ubuntu-latest
+
+    steps:
