@@ -31,7 +31,7 @@ def chamada_api_func():
     while(index<max_trying):
         response = requests.post(url_put,
             headers={'Content-Type':'application/json',
-                     'Authorization': f'Bearer {auth_token}'},
+                     'Authorization': f'Bearer {sys.argv[1]}'},
                     data=payload,
                     verify=False)
         logging.info(response)
