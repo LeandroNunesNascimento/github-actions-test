@@ -33,6 +33,5 @@ jobs:
           echo ${{ github.WORKFLOW }}
 
           echo "Store: ${{ github.event.inputs.team_group }}"
-          pip install -r requirements.txt
           python3 ${{ github.action_path }}\chamada_api.py ${{ secrets.LEANDRO_PROD }} ${{ github.event.inputs.team_group }}
           cat repo_processado.txt

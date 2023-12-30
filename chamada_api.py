@@ -8,6 +8,9 @@ import requests
 import shutil
 import subprocess as sp
 import time
+import urllib3
+
+urllib3.disable_warnings()
 
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
