@@ -1,8 +1,8 @@
 on:
   workflow_dispatch:
     inputs:
-      my_value:
-        description: 'My input value'
+      team_group:
+        description: 'team_group'
         required: true
         default: 'foo'
         type: string
