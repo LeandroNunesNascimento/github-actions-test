@@ -17,15 +17,13 @@ access_token = os.environ["access_token"]
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
 
-    auth_token='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'
-
     teste1='rulesets'
 
     url_put=github_url+'/'+linha+'/'+teste1
 
     print(url_put)
 
-    payload='{"name":"versao final leandro nunes do nascimento","enforcement":"active"}'
+    payload='{"name":"versao final LEANDRO NUNES","enforcement":"active"}'
     print(payload)
 
     response=''
