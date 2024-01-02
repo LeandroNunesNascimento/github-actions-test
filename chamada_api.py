@@ -26,7 +26,7 @@ def chamada_api_func():
     payload='{"name": {sys.argv[1]},"enforcement":"active"}'
     print(payload)
 
-    response='
+    response=''
     result_expected='<Response [201]>'
     max_trying=3
     
