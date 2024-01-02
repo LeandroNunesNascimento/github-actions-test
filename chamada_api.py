@@ -12,7 +12,7 @@ import urllib3
 
 urllib3.disable_warnings()
 
-access_token = os.environ["TOKEN"]
+access_token = os.environ["access_token"]
 
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
