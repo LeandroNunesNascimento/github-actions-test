@@ -28,5 +28,5 @@ jobs:
           pip install -r requirements.txt
           echo "Store: ${{ github.event.inputs.team_group }}"
           echo "entrando aqui"
-          python3 ${{ github.action_path }}\chamada_api.py
+          python3 ${{ github.action_path }}\chamada_api.py ${{ github.event.inputs.team_group }}
           cat repo_processado.txt
