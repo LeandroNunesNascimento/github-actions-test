@@ -6,6 +6,8 @@ on:
         required: true
         default: 'foo'
         type: string
+env:
+  access_token: ${{ secrets.TOKEN }}
 
 jobs:
 
@@ -26,5 +28,5 @@ jobs:
           pip install -r requirements.txt
           echo "Store: ${{ github.event.inputs.team_group }}"
           echo "entrando aqui"
-          python3 ${{ github.action_path }}\chamada_api.py ${{ secrets.LEANDRO_PROD }} ${{ github.event.inputs.team_group }}
+          python3 ${{ github.action_path }}\chamada_api.py
           cat repo_processado.txt

@@ -12,6 +12,8 @@ import urllib3
 
 urllib3.disable_warnings()
 
+access_token = os.environ["TOKEN"]
+
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
 
@@ -23,7 +25,7 @@ def chamada_api_func():
 
     print(url_put)
 
-    payload='{"name":"versao final","enforcement":"active"}'
+    payload='{"name":"versao final leandro nunes do nascimento","enforcement":"active"}'
     print(payload)
 
     response=''
@@ -34,7 +36,7 @@ def chamada_api_func():
     while(index<max_trying):
         response = requests.post(url_put,
             headers={'Content-Type':'application/json',
-                     'Authorization': f'Bearer {sys.argv[1]}'},
+                     'Authorization': f'Bearer {access_token}'},
                     data=payload,
                     verify=False)
         logging.info(response)
