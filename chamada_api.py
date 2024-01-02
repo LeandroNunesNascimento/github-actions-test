@@ -23,7 +23,7 @@ def chamada_api_func():
 
     print(url_put)
 
-    payload='{"name":"'{sys.argv[1]}'","enforcement":"active"}'
+    payload='{"name":"'({sys.argv[1]})'","enforcement":"active"}'
     print(payload)
 
     response='
