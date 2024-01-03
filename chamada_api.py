@@ -44,7 +44,7 @@ def chamada_api_func():
     print(response)
 
     if str(response) != result_expected:
-            index=3
+            #index=3
         #index=1
         sys.exit()
 
