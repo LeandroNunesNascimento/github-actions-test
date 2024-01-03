@@ -31,8 +31,8 @@ def chamada_api_func():
     result_expected='<Response [201]>'
     max_trying=3
     
-    index=0
-    while(index<max_trying):
+    #index=0
+    #while(index<max_trying):
         response = requests.post(url_put,
             headers={'Content-Type':'application/json',
                      'Authorization': f'Bearer {access_token}'},
@@ -43,12 +43,12 @@ def chamada_api_func():
         logging.info(response.content)
         print(response)
 
-        if str(response) == result_expected:
+        if str(response) != result_expected:
             index=3
         #index=1
-        result_expected='<Response [201]>'
+        sys.exit()
 
-        time.sleep(5)
+        #time.sleep(5)
 
 lista_repo_db = open("lista_repo.txt", "r")
 linhas =  lista_repo_db.readlines()
