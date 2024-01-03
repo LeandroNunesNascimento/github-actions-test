@@ -10,7 +10,7 @@ import subprocess as sp
 import time
 import urllib3
 
-urllib3.disable_warnings()
+#urllib3.disable_warnings()
 
 access_token = os.environ["access_token"]
 teste2 = sys.argv[1]
