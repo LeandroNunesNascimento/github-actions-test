@@ -33,7 +33,7 @@ def chamada_api_func():
     
     #index=0
     #while(index<max_trying):
-        response = requests.post(url_put,
+    response = requests.post(url_put,
             headers={'Content-Type':'application/json',
                      'Authorization': f'Bearer {access_token}'},
                     data=payload,
@@ -43,7 +43,7 @@ def chamada_api_func():
         logging.info(response.content)
         print(response)
 
-        if str(response) != result_expected:
+    if str(response) != result_expected:
             index=3
         #index=1
         sys.exit()
