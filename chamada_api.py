@@ -38,10 +38,10 @@ def chamada_api_func():
                      'Authorization': f'Bearer {access_token}'},
                     data=payload,
                     verify=False)
-        logging.info(response)
-        logging.info(response.headers)
-        logging.info(response.content)
-        print(response)
+    logging.info(response)
+    logging.info(response.headers)
+    logging.info(response.content)
+    print(response)
 
     if str(response) != result_expected:
             index=3
