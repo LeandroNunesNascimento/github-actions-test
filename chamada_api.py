@@ -14,6 +14,7 @@ urllib3.disable_warnings()
 
 access_token = os.environ["access_token"]
 teste2 = sys.argv[1]
+print(teste2)
 
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
@@ -24,7 +25,7 @@ def chamada_api_func():
 
     print(url_put)
 
-    payload='{"name": "'teste2'","enforcement":"active"}'
+    payload='{"name": "'+teste2+'","enforcement":"active"}'
     print(payload)
     response=''
     result_expected='<Response [201]>'
