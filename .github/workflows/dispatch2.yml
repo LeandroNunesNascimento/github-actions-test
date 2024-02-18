@@ -9,7 +9,7 @@ on:
         default: 'foo'
         type: string
 env:
-  access_token: ${{ secrets.TOKEN }}
+  access_token: ${{ secrets.LEANDRO_NUNES }}
 
 jobs:
 
