@@ -15,7 +15,7 @@ urllib3.disable_warnings()
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento/teste_info_template'
 
-    auth_token='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'
+    access_token = os.environ["access_token"]
 
 
     url_put=github_url
