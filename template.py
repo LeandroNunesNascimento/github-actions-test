@@ -12,10 +12,13 @@ import urllib3
 
 urllib3.disable_warnings()
 
-def chamada_api_func():
-    github_url='https://api.github.com/repos/LeandroNunesNascimento/teste_info_template'
+access_token = os.environ["access_token"]
+repository_name = sys.argv[1]
 
-    access_token = os.environ["access_token"]
+def chamada_api_func():
+    github_url='https://api.github.com/repos/LeandroNunesNascimento'/'+repository_name'
+
+  
 
 
     url_put=github_url
@@ -30,7 +33,7 @@ def chamada_api_func():
     
     response = requests.get(url_put,
             headers={'Content-Type':'application/json',
-                     'Authorization': f'Bearer {auth_token}'},
+                     'Authorization': f'Bearer {access_token}'},
                     verify=False)
     logging.info(response)
     logging.info(response.headers)
