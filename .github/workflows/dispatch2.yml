@@ -1,4 +1,4 @@
-name: 'fluxo api'
+name: 'template do repositorio'
 
 on:
   workflow_dispatch:
