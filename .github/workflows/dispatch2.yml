@@ -9,7 +9,7 @@ on:
         default: 'foo'
         type: string
 env:
-  access_token: ${{ secrets.LEANDRO_PROD }}
+  access_token: ${{ secrets.TOKEN }}
 
 jobs:
 
@@ -22,8 +22,7 @@ jobs:
         uses: actions/setup-python@v2.2.2
         with:
           python-version: 3.8
-        env:
-          access_token: ${{ secrets.LEANDRO_PROD }}
+     
      
       - name: Execute Test Script
         run: |
