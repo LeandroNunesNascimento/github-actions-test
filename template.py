@@ -34,6 +34,6 @@ def chamada_api_func():
     logging.info(response.headers)
     logging.info(response.content)
     response_data = response.json()
-    print(response_data["template_repository"]["name"])
+    print(response_data)
 
 chamada_api_func()
