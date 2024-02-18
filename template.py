@@ -16,12 +16,12 @@ access_token = os.environ["access_token"]
 repository_name = sys.argv[1]
 
 def chamada_api_func():
-    github_url='https://api.github.com/repos/LeandroNunesNascimento'/'+repository_name'
+    github_url='https://api.github.com/repos/LeandroNunesNascimento'
 
   
 
 
-    url_put=github_url
+    url_put=github_url+'/'+repository_name
 
     print(url_put)
 
