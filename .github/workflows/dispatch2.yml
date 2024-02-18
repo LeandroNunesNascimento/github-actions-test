@@ -1,0 +1,33 @@
+name: 'fluxo api'
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository_name:
+        description: 'repository_name'
+        required: true
+        default: 'foo'
+        type: string
+env:
+  access_token: ${{ secrets.TOKEN }}
+
+jobs:
+
+  run-python-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Setup Python
+        uses: actions/setup-python@v2.2.2
+        with:
+          python-version: 3.8
+        env:
+          access_token: ${{ secrets.LEANDRO_PROD }}
+      - name: Execute Test Script
+        run: |
+          ls -ltra
+          pip install -r requirements.txt
+          echo "Store: ${{ github.event.inputs.repository_name }}"
+          echo "entrando aqui"
+          python3 ${{ github.action_path }}\template.py ${{ github.event.inputs.repository_name }}
