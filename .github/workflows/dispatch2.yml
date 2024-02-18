@@ -8,8 +8,7 @@ on:
         required: true
         default: 'foo'
         type: string
-env:
-  access_token: ${{ secrets.TOKEN }}
+
 
 jobs:
 
