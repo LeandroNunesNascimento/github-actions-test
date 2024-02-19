@@ -18,6 +18,7 @@ repository_name = sys.argv[1]
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
     url_put=github_url+'/'+repository_name
+    auth_token='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'
 
     print(url_put)
 
@@ -28,7 +29,7 @@ def chamada_api_func():
   
     response = requests.get(url_put,
             headers={'Content-Type':'application/json',
-                     'Authorization': f'Bearer {access_token}'},
+                     'Authorization': f'Bearer {auth_token}'},
                     verify=False)
     logging.info(response)
     logging.info(response.headers)
