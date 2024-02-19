@@ -18,7 +18,7 @@ repository_name = sys.argv[1]
 def chamada_api_func():
     github_url='https://api.github.com/repos/LeandroNunesNascimento'
     url_put=github_url+'/'+repository_name
-    auth_token='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'
+    auth_token='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'
 
     print(url_put)
 
