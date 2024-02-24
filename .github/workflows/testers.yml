@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Set up variables
-      run: echo "::set-env name=MY_VARIABLE::Hello, World!"
+      run: MY_VARIABLE=echo"Hello, World!"
 
     - name: Transform Variable to JSON
       run: |
