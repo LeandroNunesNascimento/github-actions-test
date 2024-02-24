@@ -1,0 +1,22 @@
+name: Convert Variable to JSON
+
+on: [push]
+
+jobs:
+  transform_variable:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up variables
+      run: echo "::set-env name=MY_VARIABLE::Hello, World!"
+
+    - name: Transform Variable to JSON
+      run: |
+        JSON_VAR=$(echo "{\"my_variable\":\"${MY_VARIABLE}\"}")
+        echo "::set-env name=JSON_VAR::${JSON_VAR}"
+    
+    - name: Display JSON variable
+      run: |
+        echo "JSON_VAR value is $JSON_VAR"
+        echo "JSON_VAR in human-readable JSON:"
+        echo $JSON_VAR | jq '.'
