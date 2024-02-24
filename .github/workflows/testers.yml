@@ -13,7 +13,7 @@ jobs:
     - name: Transform Variable to JSON
       run: |
         JSON_VAR=$(echo "{\"my_variable\":\"${MY_VARIABLE}\"}")
-        echo "::set-env name=JSON_VAR::${JSON_VAR}"
+        echo $JSON_VAR
     
     - name: Display JSON variable
       run: |
