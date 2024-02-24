@@ -9,6 +9,7 @@ jobs:
     steps:
     - name: Set up variables
       run: MY_VARIABLE=echo"Hello, World!"
+           echo $MY_VARIABLE
 
     - name: Transform Variable to JSON
       run: |
