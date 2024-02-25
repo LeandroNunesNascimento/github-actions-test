@@ -8,12 +8,14 @@ jobs:
 
     steps:
     - name: Set up variables
+      env:
+        STEP_ENV: Leandro Nunes
       run: MY_VARIABLE=echo"Hello, World!"
            echo $MY_VARIABLE
 
     - name: Transform Variable to JSON
       run: |
-        JSON_VAR=$(echo "{\"my_variable\":\"${MY_VARIABLE}\"}")
+        JSON_VAR=$(echo "{\"my_variable\":\"${STEP_ENV}\"}")
         echo $JSON_VAR
     
     - name: Display JSON variable
