@@ -1,6 +1,10 @@
-name: teste_response
+name: 'teste_response'
 on:
   workflow_dispatch:
+    inputs:
+      myInput:
+        description: 'User Input Here'
+        required: true
 
 
 jobs:
