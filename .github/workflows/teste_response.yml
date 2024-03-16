@@ -32,7 +32,7 @@ jobs:
           struct curl_slist *headers = NULL;
           headers = curl_slist_append(headers, "Content-Type: application/json");
           headers = curl_slist_append(headers, "User-Agent: insomnia/8.3.0");
-          headers = curl_slist_append(headers, "Authorization: Bearer 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");
+          headers = curl_slist_append(headers, "Authorization: Bearer $GITHUB_TOKEN");
           curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
 
           CURLcode ret = curl_easy_perform(hnd);
