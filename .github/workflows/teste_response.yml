@@ -34,10 +34,10 @@ jobs:
           
           echo $first
       
-      - name: Generate Warning Annotations
+      - name: Generate Error Annotations
         run: |
-          text="This is a Warning"
-          echo "::Template Origem ${{ steps.get-pr-number.outputs.saida }}"
+          text="This is an Error"
+          echo "::error file=app.js,line=10,col=15::$text"
          
 
       - name: Use Pull Request Number
