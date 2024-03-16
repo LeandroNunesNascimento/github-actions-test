@@ -24,8 +24,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-          curl --request GET https://api.github.com/repos/LeandroNunesNascimento/teste_info_template \
-          -H Content-Type: application/json \
+          curl --request GET \
+          --url "https://api.github.com/repos/LeandroNunesNascimento/teste_info_template" \
+          -H "Content-Type: application/json" \
           -H "Accept: application/json" \
           -H "Authorization: Bearer $GITHUB_TOKEN"
           #-d {}
