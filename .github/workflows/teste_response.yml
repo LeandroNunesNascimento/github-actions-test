@@ -26,8 +26,8 @@ jobs:
           PR_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
           "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls?head=${GITHUB_REPOSITORY%/*}:${GITHUB_REF#refs/heads/}")
           PR_NUMBER=$(echo "$PR_RESPONSE")
-          echo "Pull Request Number: $PR_NUMBER"
-          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+          #echo "Pull Request Number: $PR_NUMBER"
+          #echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
 
       - name: Use Pull Request Number
         run: |
