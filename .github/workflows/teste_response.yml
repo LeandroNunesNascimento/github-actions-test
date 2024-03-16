@@ -19,7 +19,7 @@ jobs:
       - name: Install jq
         run: sudo apt-get install jq
 
-      - name: Get Pull Request Number
+      - name: Get Template Origin
         id: get-pr-number
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -30,17 +30,16 @@ jobs:
           -H "Accept: application/json" \
           -H "Authorization: Bearer $GITHUB_TOKEN")
 
-          first=$( echo "$saida" | jq '.["template_repository"]["name"]' )
+          template_origem=$( echo "$saida" | jq '.["template_repository"]["name"]' )
           
-          echo $first
+          echo $template_origem
+
+          echo "template_origem=$template_origem" >> $GITHUB_OUTPUT
       
       - name: Generate Error Annotations
         run: |
           text="This is an Error"
           echo "::error file=app.js,line=10,col=15::$text"
-          echo "::notice::my message text"
+          echo "::notice::Este repositorio esta com este TEMPLATE EM SUA ORIGEM: steps.get-pr-number.outputs.template_origem"
          
 
-      - name: Use Pull Request Number
-        run: |
-          echo "The Pull Request Number is ${{ steps.get-pr-number.outputs.number }}"
