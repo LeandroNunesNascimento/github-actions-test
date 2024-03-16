@@ -24,12 +24,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-          curl --request GET \
+          saida=$(curl --request GET \
           --url "https://api.github.com/repos/LeandroNunesNascimento/teste_info_template" | jq '.'\
           -H "Content-Type: application/json" \
           -H "Accept: application/json" \
-          -H "Authorization: Bearer $GITHUB_TOKEN"
-          #-d {}
+          -H "Authorization: Bearer $GITHUB_TOKEN")
+          
+          echo $saida
          
 
       - name: Use Pull Request Number
