@@ -1,0 +1,30 @@
+name: teste_response
+on:
+  workflow_dispatch:
+
+
+jobs:
+  capture-pr-number:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Ensure jq is installed
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Get Pull Request Number
+        id: get-pr-number
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+          "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls?head=${GITHUB_REPOSITORY%/*}:${GITHUB_REF#refs/heads/}")
+          PR_NUMBER=$(echo "$PR_RESPONSE" | jq '.[0].number')
+          echo "Pull Request Number: $PR_NUMBER"
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Use Pull Request Number
+        run: |
+          echo "The Pull Request Number is ${{ steps.get-pr-number.outputs.number }}"
