@@ -38,6 +38,7 @@ jobs:
         run: |
           text="This is an Error"
           echo "::error file=app.js,line=10,col=15::$text"
+          echo "::notice::my message text"
          
 
       - name: Use Pull Request Number
