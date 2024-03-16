@@ -26,8 +26,8 @@ jobs:
           curl -X GET https://api.github.com/repos/LeandroNunesNascimento/teste_info_template \
           -H 'Content-Type: application/json' \
           -H 'Accept: application/json' \
-          -H 'Authorization: Bearer {$GITHUB_TOKEN}'
-          -d {}
+          -H 'Authorization: Bearer $GITHUB_TOKEN'
+          #-d {}
          
 
       - name: Use Pull Request Number
