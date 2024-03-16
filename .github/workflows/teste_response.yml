@@ -33,6 +33,11 @@ jobs:
           first=$( echo "$saida" | jq '.["template_repository"]["name"]' )
           
           echo $first
+      
+      - name: Generate Warning Annotations
+        run: |
+          text="This is a Warning"
+          echo "::Template Origem ${{ steps.get-pr-number.outputs.saida }}"
          
 
       - name: Use Pull Request Number
