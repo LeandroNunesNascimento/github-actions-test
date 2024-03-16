@@ -29,8 +29,10 @@ jobs:
           -H "Content-Type: application/json" \
           -H "Accept: application/json" \
           -H "Authorization: Bearer $GITHUB_TOKEN")
+
+          first=$( echo "$saida" | jq '.["template_repository"]["name"]' )
           
-          echo $saida
+          echo $first
          
 
       - name: Use Pull Request Number
