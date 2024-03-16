@@ -23,10 +23,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
-          curl -s -H --write-out "Authorization: token $GITHUB_TOKEN" \
-          "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls?head=${GITHUB_REPOSITORY%/*}:${GITHUB_REF#refs/heads/}"
-          #echo "Pull Request Number: $PR_NUMBER"
-          #echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+          CURL *hnd = curl_easy_init();
+
+          curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
+          curl_easy_setopt(hnd, CURLOPT_URL, "https://api.github.com/repos/LeandroNunesNascimento/github-actions-test");
+
+          struct curl_slist *headers = NULL;
+          headers = curl_slist_append(headers, "Content-Type: application/json");
+          headers = curl_slist_append(headers, "User-Agent: insomnia/8.3.0");
+          headers = curl_slist_append(headers, "Authorization: Bearer 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");
+          curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+
+          CURLcode ret = curl_easy_perform(hnd);
+         
 
       - name: Use Pull Request Number
         run: |
