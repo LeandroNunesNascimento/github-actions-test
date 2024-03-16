@@ -38,6 +38,4 @@ jobs:
       
       - name: Generate Error Annotations
         run: |
-          text="This is an Error"
-          echo "::error file=app.js,line=10,col=15::$text"
           echo "::notice::Este repositorio esta com este TEMPLATE EM SUA ORIGEM: ${{steps.get-pr-number.outputs.template_origem}}"
