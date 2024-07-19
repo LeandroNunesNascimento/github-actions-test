@@ -3,7 +3,7 @@ name: Scheduled Job
 on:
   schedule:
     # Runs at 00:00 UTC every day
-    - cron: '28 12 * * *'
+    - cron: '35 09 * * *'
 
 jobs:
   example-job:
