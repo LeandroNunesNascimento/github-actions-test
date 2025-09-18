@@ -37,13 +37,10 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
     - name: List Logs
       if: ${{ !cancelled() }}
-      # run: |
-      #   pwd
-      #   find /home/runner/actions-runner/cached/_diag/ -type f -name "*Worker*log*"- name: Find and process Worker logs
-      #   id: process-logs
-        run: |
+      run: |
           # Encontra todos os arquivos Worker*.log
           LOG_FILES=$(find /Users/leandronunes/actions-runner/_diag -name "Worker*.log" -type f)
           
