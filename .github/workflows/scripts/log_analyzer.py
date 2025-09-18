@@ -93,7 +93,7 @@ def main():
                 f.write(f"{error}\n")
                 f.write("-" * 50 + "\n")
         
-        print(f"\nResultados salvos em error_messages.json e error_messages.txt")
+        print(f"Resultados salvos em error_messages.json e error_messages.txt")
         
     #    # CORREÇÃO: Formato correto para GITHUB_OUTPUT
     #     if 'GITHUB_OUTPUT' in os.environ:
