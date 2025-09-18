@@ -39,11 +39,13 @@ jobs:
         pytest
 
     - name: Set up Python
+      if: ${{ !cancelled() }}
       uses: actions/setup-python@v4
       with:
           python-version: '3.9'
 
     - name: Run error message extractor
+      if: ${{ !cancelled() }}
       id: extract-errors
       run: |
           # Executa o script Python
@@ -54,6 +56,7 @@ jobs:
           echo "errors=$ERRORS_JSON" >> $GITHUB_OUTPUT
 
     - name: Display extracted errors
+      if: ${{ !cancelled() }}
       run: |
           echo '${{ steps.extract-errors.outputs.errors }}' | jq -r '.[]' | while read -r error; do
             echo "=== ERROR MESSAGE ==="
@@ -62,6 +65,7 @@ jobs:
           done
 
     - name: Upload error results
+      if: ${{ !cancelled() }}
       uses: actions/upload-artifact@v4
       with:
         name: error-messages
