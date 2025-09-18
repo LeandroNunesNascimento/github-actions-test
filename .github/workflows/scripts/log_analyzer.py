@@ -118,7 +118,7 @@ def main():
         #         print(f"Erro ao escrever para GITHUB_OUTPUT: {e}")
     
     # Sucesso
-    sys.exit(0)
+    #sys.exit(0)
 
 if __name__ == "__main__":
     main()
