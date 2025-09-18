@@ -86,8 +86,8 @@ jobs:
           echo "full_messages=$JSON_ARRAY" >> $GITHUB_OUTPUT
           echo "log_files=$LOG_FILES" >> $GITHUB_OUTPUT
 
-      - name: Show full results
-        run: |
+    - name: Show full results
+      run: |
           echo "Arquivos processados: ${{ steps.process-logs.outputs.log_files }}"
           echo "Mensagens completas extraídas:"
           
@@ -99,8 +99,8 @@ jobs:
             fi
           done
 
-      - name: Save to file for further analysis
-        run: |
+    - name: Save to file for further analysis
+      run: |
           # Salva as mensagens completas em um arquivo
           echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' > full_error_messages.log
 
