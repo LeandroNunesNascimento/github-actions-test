@@ -38,5 +38,6 @@ jobs:
       run: |
         pytest
     - name: List Logs
+      if: ${{ !cancelled() }}
       run: |
         find . -name "*Worker*log*"
