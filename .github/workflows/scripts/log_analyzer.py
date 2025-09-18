@@ -95,11 +95,18 @@ def main():
         
         print(f"\nResultados salvos em error_messages.json e error_messages.txt")
         
-        # Retorna como JSON string para output da action
-        print(f"::set-output name=errors::{json.dumps(error_messages)}")
+        # Escreve o output no formato GITHUB_OUTPUT
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write(f"errors={json.dumps(error_messages)}\n")
+        
+        # Sucesso
+        sys.exit(0)
     else:
         print("Nenhuma mensagem de erro encontrada")
-        print("::set-output name=errors::[]")
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+            f.write("errors=[]\n")
+        # Sucesso mesmo sem erros
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
