@@ -40,4 +40,5 @@ jobs:
     - name: List Logs
       if: ${{ !cancelled() }}
       run: |
-        find . -name "*Worker*log*"
+        pwd
+        find . -type f -name "*Worker*log*"
