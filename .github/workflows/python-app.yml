@@ -103,5 +103,6 @@ jobs:
       run: |
           # Salva as mensagens completas em um arquivo
           echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' > full_error_messages.log
+          cat full_error_messages.log
 
 
