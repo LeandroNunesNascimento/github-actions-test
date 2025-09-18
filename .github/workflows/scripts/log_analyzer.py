@@ -95,18 +95,30 @@ def main():
         
         print(f"\nResultados salvos em error_messages.json e error_messages.txt")
         
-        # Escreve o output no formato GITHUB_OUTPUT
-        # with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-        #     f.write(f"errors={json.dumps(error_messages)}\n")
+       # CORREÇÃO: Formato correto para GITHUB_OUTPUT
+        if 'GITHUB_OUTPUT' in os.environ:
+            github_output_file = os.environ['GITHUB_OUTPUT']
+            try:
+                with open(github_output_file, 'a', encoding='utf-8') as f:
+                    # Formato correto: name=value
+                    errors_json = json.dumps(error_messages, ensure_ascii=False)
+                    f.write(f"errors={errors_json}\n")
+                print("Output escrito para GITHUB_OUTPUT com sucesso")
+            except Exception as e:
+                print(f"Erro ao escrever para GITHUB_OUTPUT: {e}")
         
-        # Sucesso
-        sys.exit(0)
     else:
-        # print("Nenhuma mensagem de erro encontrada")
-        # with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
-        #     f.write("errors=[]\n")
-        # Sucesso mesmo sem erros
-        sys.exit(0)
+        print("Nenhuma mensagem de erro encontrada")
+        if 'GITHUB_OUTPUT' in os.environ:
+            github_output_file = os.environ['GITHUB_OUTPUT']
+            try:
+                with open(github_output_file, 'a', encoding='utf-8') as f:
+                    f.write("errors=[]\n")
+            except Exception as e:
+                print(f"Erro ao escrever para GITHUB_OUTPUT: {e}")
+    
+    # Sucesso
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
