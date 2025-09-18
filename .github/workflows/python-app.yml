@@ -38,71 +38,35 @@ jobs:
       run: |
         pytest
 
-    - name: List Logs
-      if: ${{ !cancelled() }}
-      run: |
-          # Encontra todos os arquivos Worker*.log
-          LOG_FILES=$(find /Users/leandronunes/actions-runner/_diag -name "Worker*.log" -type f)
-          
-          if [ -z "$LOG_FILES" ]; then
-            echo "Nenhum arquivo Worker*.log encontrado"
-            exit 0
-          fi
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+          python-version: '3.9'
 
-          echo "Arquivos de log encontrados:"
-          echo "$LOG_FILES"
-          
-          # Processa cada arquivo de log
-          ALL_FULL_MESSAGES=""
-          for LOG_FILE in $LOG_FILES; do
-            echo "Processando: $LOG_FILE"
-            
-            # Extrai as linhas completas que contêm errorMessages
-            ERROR_MESSAGES=$(grep -i "errorMessages" "$LOG_FILE" || true)
-            
-            if [ -n "$ERROR_MESSAGES" ]; then
-              echo "Mensagens de erro encontradas em $LOG_FILE:"
-              echo "$ERROR_MESSAGES"
-              
-              # Extrai as strings completas que contêm []
-              FULL_MESSAGES=$(echo "$ERROR_MESSAGES" | grep -o '.*\[[^]]*\].*' | sort -u)
-              
-              if [ -n "$FULL_MESSAGES" ]; then
-                ALL_FULL_MESSAGES="$ALL_FULL_MESSAGES"$'\n'"$FULL_MESSAGES"
-              fi
-            fi
-          done
-          
-          # Remove linhas vazias e duplicatas
-          UNIQUE_MESSAGES=$(echo "$ALL_FULL_MESSAGES" | grep -v '^$' | sort -u)
-          
-          # Converte para JSON array (escapando caracteres especiais)
-          JSON_ARRAY=$(echo "$UNIQUE_MESSAGES" | jq -R -s -c 'split("\n") | map(select(. != ""))')
-          
-          echo "=== MENSAGENS COMPLETAS ENCONTRADAS ==="
-          echo "$UNIQUE_MESSAGES"
-          
-          # Salva como output da action
-          echo "full_messages=$JSON_ARRAY" >> $GITHUB_OUTPUT
-          echo "log_files=$LOG_FILES" >> $GITHUB_OUTPUT
-
-    - name: Show full results
+    - name: Run error message extractor
+      id: extract-errors
       run: |
-          echo "Arquivos processados: ${{ steps.process-logs.outputs.log_files }}"
-          echo "Mensagens completas extraídas:"
+          # Executa o script Python
+          python scripts/log_analyzer.py
           
-          # Exibe cada mensagem completa
-          echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' | while read -r line; do
-            if [ -n "$line" ]; then
-              echo "----------------------------------------"
-              echo "$line"
-            fi
+          # Captura o output (método alternativo para set-output deprecated)
+          ERRORS_JSON=$(cat error_messages.json 2>/dev/null || echo '[]')
+          echo "errors=$ERRORS_JSON" >> $GITHUB_OUTPUT
+
+    - name: Display extracted errors
+      run: |
+          echo '${{ steps.extract-errors.outputs.errors }}' | jq -r '.[]' | while read -r error; do
+            echo "=== ERROR MESSAGE ==="
+            echo "$error"
+            echo ""
           done
 
-    - name: Save to file for further analysis
-      run: |
-          # Salva as mensagens completas em um arquivo
-          echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' > full_error_messages.log
-          cat full_error_messages.log
+    - name: Upload error results
+      uses: actions/upload-artifact@v4
+      with:
+        name: error-messages
+        path: |
+            error_messages.json
+            error_messages.txt
 
 
