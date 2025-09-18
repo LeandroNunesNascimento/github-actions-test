@@ -49,7 +49,7 @@ jobs:
       id: extract-errors
       run: |
           # Executa o script Python
-          python scripts/log_analyzer.py
+          python .github/workflows/scripts/log_analyzer.py
           
           # Captura o output (método alternativo para set-output deprecated)
           ERRORS_JSON=$(cat error_messages.json 2>/dev/null || echo '[]')
