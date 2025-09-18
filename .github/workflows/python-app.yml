@@ -51,9 +51,6 @@ jobs:
           # Executa o script Python
           python .github/workflows/scripts/log_analyzer.py
           
-          # Captura o output (método alternativo para set-output deprecated)
-          ERRORS_JSON=$(cat error_messages.json 2>/dev/null || echo '[]')
-          echo "errors=$ERRORS_JSON" >> $GITHUB_OUTPUT
 
     - name: Display extracted errors
       if: ${{ !cancelled() }}
