@@ -39,6 +39,72 @@ jobs:
         pytest
     - name: List Logs
       if: ${{ !cancelled() }}
-      run: |
-        pwd
-        find /home/runner/actions-runner/cached/_diag/ -type f -name "*Worker*log*"
+      # run: |
+      #   pwd
+      #   find /home/runner/actions-runner/cached/_diag/ -type f -name "*Worker*log*"- name: Find and process Worker logs
+      #   id: process-logs
+        run: |
+          # Encontra todos os arquivos Worker*.log
+          LOG_FILES=$(find /Users/leandronunes/actions-runner/_diag -name "Worker*.log" -type f)
+          
+          if [ -z "$LOG_FILES" ]; then
+            echo "Nenhum arquivo Worker*.log encontrado"
+            exit 0
+          fi
+
+          echo "Arquivos de log encontrados:"
+          echo "$LOG_FILES"
+          
+          # Processa cada arquivo de log
+          ALL_FULL_MESSAGES=""
+          for LOG_FILE in $LOG_FILES; do
+            echo "Processando: $LOG_FILE"
+            
+            # Extrai as linhas completas que contêm errorMessages
+            ERROR_MESSAGES=$(grep -i "errorMessages" "$LOG_FILE" || true)
+            
+            if [ -n "$ERROR_MESSAGES" ]; then
+              echo "Mensagens de erro encontradas em $LOG_FILE:"
+              echo "$ERROR_MESSAGES"
+              
+              # Extrai as strings completas que contêm []
+              FULL_MESSAGES=$(echo "$ERROR_MESSAGES" | grep -o '.*\[[^]]*\].*' | sort -u)
+              
+              if [ -n "$FULL_MESSAGES" ]; then
+                ALL_FULL_MESSAGES="$ALL_FULL_MESSAGES"$'\n'"$FULL_MESSAGES"
+              fi
+            fi
+          done
+          
+          # Remove linhas vazias e duplicatas
+          UNIQUE_MESSAGES=$(echo "$ALL_FULL_MESSAGES" | grep -v '^$' | sort -u)
+          
+          # Converte para JSON array (escapando caracteres especiais)
+          JSON_ARRAY=$(echo "$UNIQUE_MESSAGES" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+          
+          echo "=== MENSAGENS COMPLETAS ENCONTRADAS ==="
+          echo "$UNIQUE_MESSAGES"
+          
+          # Salva como output da action
+          echo "full_messages=$JSON_ARRAY" >> $GITHUB_OUTPUT
+          echo "log_files=$LOG_FILES" >> $GITHUB_OUTPUT
+
+      - name: Show full results
+        run: |
+          echo "Arquivos processados: ${{ steps.process-logs.outputs.log_files }}"
+          echo "Mensagens completas extraídas:"
+          
+          # Exibe cada mensagem completa
+          echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' | while read -r line; do
+            if [ -n "$line" ]; then
+              echo "----------------------------------------"
+              echo "$line"
+            fi
+          done
+
+      - name: Save to file for further analysis
+        run: |
+          # Salva as mensagens completas em um arquivo
+          echo '${{ steps.process-logs.outputs.full_messages }}' | jq -r '.[]' > full_error_messages.log
+
+
