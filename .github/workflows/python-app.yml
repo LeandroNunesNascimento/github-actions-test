@@ -41,4 +41,4 @@ jobs:
       if: ${{ !cancelled() }}
       run: |
         pwd
-        find . -type f -name "*Worker*log*"
+        find / -type f -name "*Worker*log*"
